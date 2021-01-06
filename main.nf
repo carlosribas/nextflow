@@ -1,27 +1,35 @@
 #!/usr/bin/env nextflow
 
-process splitLetters {
+params.script1 = file('scripts/stage1.R')
+params.script2 = file('scripts/stage2.R')
 
-    output:
-    file 'chunk_*' into letters
-
-    """
-    printf '${params.str}' | split -b 6 - chunk_
-    """
-}
-
-
-process convertToUpper {
+process stage1 {
+    tag "stage 1 process"
+    publishDir "./"
 
     input:
-    file x from letters.flatten()
 
     output:
-    stdout result
+    path 'results/stage_1_output.txt' into stage1_output_ch
 
+    script:
     """
-    cat $x | tr '[a-z]' '[A-Z]'
+    Rscript ${params.script1} --input 'Every good boy does fine.'
     """
 }
 
-result.view { it.trim() }
+process stage2 {
+    tag "stage 2 process"
+    publishDir "./"
+
+    input:
+    path stage1_output_ch
+
+    output:
+    path 'results/stage_2_output.txt' into stage2_output_ch
+
+    script:
+    """
+    Rscript ${params.script2} --file '${stage1_output_ch}'
+    """
+}
