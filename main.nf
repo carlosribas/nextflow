@@ -4,6 +4,7 @@ params.script1 = file('scripts/stage1.R')
 params.script2 = file('scripts/stage2.R')
 
 process stage1 {
+    container = 'qrouchon/r-base-plus'
     tag "stage 1 process"
     publishDir "./"
 
@@ -19,6 +20,7 @@ process stage1 {
 }
 
 process stage2 {
+    container = 'qrouchon/r-base-plus'
     tag "stage 2 process"
     publishDir "./"
 
