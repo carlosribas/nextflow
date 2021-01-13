@@ -6,7 +6,7 @@ params.file = file('input.fasta')
  * split a fasta file in multiple files
  */
 process splitSequences {
-    container = 'nextflow/examples'
+    container 'nextflow/examples'
 
     input:
     path 'input.fasta' from params.file
@@ -23,7 +23,7 @@ process splitSequences {
  * Simple reverse the sequences
  */
 process reverse {
-    container = 'nextflow/examples'
+    container 'nextflow/examples'
 
     input:
     path x from records
