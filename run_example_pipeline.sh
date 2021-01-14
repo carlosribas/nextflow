@@ -1,0 +1,1 @@
+nextflow -C /code/nextflow.config run main.nf

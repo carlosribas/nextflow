@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: run-test-pipeline
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - image: rnacentral/test-pipeline
+        name: run-test-pipeline
+        volumeMounts:
+          - name: data
+            mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: nextflow-volume
