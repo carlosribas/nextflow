@@ -7,7 +7,7 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - image: rnacentral/test-pipeline
+      - image: rnacentral/test-pipeline:v1
         name: run-test-pipeline
         volumeMounts:
           - name: data
