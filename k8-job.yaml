@@ -7,8 +7,9 @@ spec:
     spec:
       restartPolicy: OnFailure
       containers:
-      - image: rnacentral/test-pipeline:v2
+      - image: rnacentral/test-pipeline
         name: run-test-pipeline
+        imagePullPolicy: Always
         volumeMounts:
           - name: data
             mountPath: /data
