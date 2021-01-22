@@ -2,7 +2,6 @@
 
 nextflow.enable.dsl=2
 params.str = 'Hello world'
-params.output = '/code/results'
 
 process splitLetters {
     output:
@@ -22,7 +21,7 @@ process convertToUpper {
     stdout
 
     """
-    cat $x | tr '[a-z]' '[A-Z]' > '${params.output}'
+    cat $x | tr '[a-z]' '[A-Z]'
     """
 }
 
