@@ -1,1 +1,1 @@
-nextflow -C /code/nextflow.config run main.nf
+NXF_VER=20.11.0-edge nextflow -C /code/nextflow.config run main.nf
