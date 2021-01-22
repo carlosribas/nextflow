@@ -5,9 +5,9 @@ metadata:
 spec:
   template:
     spec:
-      restartPolicy: Never
+      restartPolicy: OnFailure
       containers:
-      - image: rnacentral/test-pipeline:v1
+      - image: rnacentral/test-pipeline:v2
         name: run-test-pipeline
         volumeMounts:
           - name: data
