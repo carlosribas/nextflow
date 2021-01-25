@@ -1,42 +1,31 @@
 #!/usr/bin/env nextflow
 
-params.file = file('input.fasta')
+nextflow.enable.dsl=2
+params.str = 'Hello world'
 
-/*
- * split a fasta file in multiple files
- */
-process splitSequences {
-    container 'nextflow/examples'
-
-    input:
-    path 'input.fasta' from params.file
-
+process splitLetters {
     output:
-    path 'seq_*' into records
+    path('chunk_*')
 
     """
-    awk '/^>/{f="seq_"++d} {print > f}' < input.fasta
+    printf '${params.str}' | split -b 6 - chunk_
     """
 }
 
-/*
- * Simple reverse the sequences
- */
-process reverse {
-    container 'nextflow/examples'
 
+process convertToUpper {
     input:
-    path x from records
+    path(x)
 
     output:
-    stdout into result
+    stdout
 
     """
-    cat $x | rev
+    cat $x | tr '[a-z]' '[A-Z]'
     """
 }
 
-/*
- * print the channel content
- */
-result.subscribe { println it }
+workflow {
+  main:
+  splitLetters | convertToUpper | view { it.trim() }
+}
