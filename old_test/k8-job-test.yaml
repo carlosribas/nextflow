@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubernetes-job-example
+spec:
+  template:
+    spec:
+      containers:
+      - name: c
+        image: devopscube/kubernetes-job-demo:latest
+        args: ["100"]
+      restartPolicy: OnFailure
