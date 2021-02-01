@@ -1,4 +1,5 @@
 FROM nextflow/nextflow
+RUN apk --update add postgresql-client
 RUN mkdir /code
 WORKDIR /code
 COPY . /code/
