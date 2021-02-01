@@ -14,10 +14,8 @@ spec:
           - name: data
             mountPath: /data
         envFrom:
-        - secretRef:
-            name: variables
         - configMapRef:
-            name: proxy-variables
+            name: db-variables
       volumes:
         - name: data
           persistentVolumeClaim:
