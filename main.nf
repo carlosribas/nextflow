@@ -7,7 +7,7 @@ process getNames {
   path('names')
 
   """
-  psql -c 'SELECT full_descr from rnc_database' '$params.db' > names
+  psql -c 'SELECT full_descr from rnc_database' postgres://$USER:$PASS@$HOST:$PORT/$DATABASE > names
   """
 }
 
